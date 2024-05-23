@@ -1,5 +1,7 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.models import auth,User
+#from django.contrib.auth import get_user_model
+
 from django.contrib import messages
 from . models import *
 from django.contrib.auth.decorators import login_required
@@ -14,26 +16,50 @@ def index(request):
     return render(request,'index.html')
 def register(request):
     print("request", request)
-    print("request.method",request.method)
+    print("request.method", request.method)
     print("request.session", request.session)
-    print("request.POST",request.POST)
+    print("request.POST", request.POST)
     print("request.GET", request.GET)
+    print("request.params", request.content_params)
+    print("request.body", request.body)
+    # print("Request.META",request.META)
+    print("Request.full_path", request.get_full_path)
+    print("Request.get_port", request.get_port)
+    print("request.type", request.content_type)
+    print("request.is_secure", request.is_secure)
+    print("request.__iter__", request.__iter__)
+    print("request.read", request.read)
 
-    for key,value in request.POST.items():
-        print("key",key)
-        print("value",value)
+    list = ['username', 'password', 'email']
+    a = []
+
+    for key, value in request.POST.items():
+        print("key", key)
+        print("value", value)
 
     if request.method == 'POST' and "login" in request.POST["submit"]:
         return redirect('login')
     if request.method == 'POST' and "register" in request.POST["submit"]:
+        #User = get_user_model()
+
         first_name=request.POST['first_name']
         last_name=request.POST['last_name']
-
         username=request.POST['username']
         password=request.POST['password']
         confirm_password=request.POST['confirm_password']
         email=request.POST['email']
-        if password==confirm_password:
+        # address = request.POST['address']
+
+        if password == confirm_password:
+            if username == "" and password=="":
+                messages.info(request, 'enter username & password')
+                return redirect('register')
+            elif password =="":
+                messages.info(request, 'enter password')
+                return redirect('register')
+            elif username =="" :
+                messages.info(request, 'enter username')
+                return redirect('register')
             if User.objects.filter(username=username).exists():
                 messages.info(request,'username taken')
                 return redirect('register')
@@ -49,14 +75,25 @@ def register(request):
         else:
             messages.info(request,"password not matching")
             return redirect('register')
-
     else:
         return render(request,'register.html')
+
+""""
+    for k, v in request.POST.items():
+        if k in list and v == "":
+            a.append(k)
+    messages.info(request, 'enter ' + "&".join(a))
+    return redirect('register')
+"""
+
+
+
 def login(request):
     if request.method == 'POST':
         username=request.POST['username']
         password=request.POST['password']
         user=auth.authenticate(username=username,password=password)
+
         if user is not None:
             auth.login(request,user)
             return redirect('index')
@@ -113,7 +150,7 @@ def filter_emp(request):
         role = request.POST['role']
         emps =Employee.objects.all()
         print("name list", emps)
-        filter_emps = Employee.objects.filter(first_name="Kavya")
+        filter_emps = Employee.objects.filter(first_name="first_name")
         print("name filter: ",filter_emps)
         if name:
             emps=emps.filter(Q(first_name__icontains = name) | Q(last_name__icontains = name))
@@ -138,5 +175,6 @@ def filter_emp(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
+
 
 

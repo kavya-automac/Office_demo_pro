@@ -25,20 +25,24 @@ SECRET_KEY = 'django-insecure-3_3^#8qkbzf0+x(3v+w9c%0%32e(o=_7m%s_3$1p-ho)2+@ziw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [".awsapprunner.com",'127.0.0.1']
 
 # Application definition
 
 INSTALLED_APPS = [
+
+#     'main.apps.MainConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'emp_app',
+    'emp_app.apps.EmpAppConfig',
+
+
 ]
+#AUTH_USER_MODEL = 'emp_app.User'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -77,7 +81,7 @@ WSGI_APPLICATION = 'office_emppro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'office_demo',
+        'NAME': 'testuser',
         'USER': 'postgres',
         'PASSWORD':'1357',
         'HOST':'localhost',

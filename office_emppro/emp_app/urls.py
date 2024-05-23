@@ -1,4 +1,4 @@
-from django.urls import path,include
+from django.urls import path
 from . import views
 
 urlpatterns = [
@@ -11,9 +11,5 @@ urlpatterns = [
     path('remove_emp/<int:emp_id>',views.remove_emp, name='remove_emp'),
     path('filter_emp',views.filter_emp, name='filter_emp'),
     path('logout',views.logout,name='logout'),
-
-
-
-
 
 ]

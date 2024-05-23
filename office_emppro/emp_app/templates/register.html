@@ -7,12 +7,14 @@
 <body>
 <form action="register" method="post">
     {% csrf_token %}
-    <input type ="text" name="first_name" placeholder="First Namexxx"><br>
+    <input type ="text" name="first_name" placeholder="First Name"><br>
     <input type ="text" name="last_name" placeholder="Last Name"><br>
     <input type ="text" name="username" placeholder="User_Name"><br>
     <input type ="password" name="password" placeholder="password"><br>
     <input type ="password" name="confirm_password" placeholder="confirm_password"><br>
     <input type ="email" name="email" placeholder="email"><br>
+<!--    <input type ="text" name="address" placeholder="address"><br>-->
+
     <button type="submit" class="btn btn-primary" name="submit" value="register">Submit</button>
     <button type="submit" class="btn" name="submit" value="login">login</button>
     <!--
