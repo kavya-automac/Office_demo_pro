@@ -1,2 +1,2 @@
 #!/bin/bash
-python manage.py collectstatic && gunicorn --workers 2 NameOfProject.wsgi
+python manage.py collectstatic && gunicorn --workers 2 office_emppro.wsgi
