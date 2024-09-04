@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-3_3^#8qkbzf0+x(3v+w9c%0%32e(o=_7m%s_3$1p-ho)2+@ziw
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".awsapprunner.com",'127.0.0.1']
+ALLOWED_HOSTS = [".awsapprunner.com",'127.0.0.1','192.168.29.144','13.53.212.0']
 
 # Application definition
 
@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'testuser',
         'USER': 'postgres',
         'PASSWORD':'1357',
-        'HOST':'localhost',
+        'HOST':'192.168.29.144',
         'PORT':'5432',
     }
 }
