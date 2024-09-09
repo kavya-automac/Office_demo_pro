@@ -82,10 +82,10 @@ WSGI_APPLICATION = 'office_emppro.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'testuser',
-        'USER': 'postgres',
-        'PASSWORD':'1357',
-        'HOST':'192.168.29.144',
+        'NAME': 'office_demo_db',
+        'USER': 'vivek_aws',
+        'PASSWORD':'Am@c1502',
+        'HOST':'65.0.154.172',
         'PORT':'5432',
     }
 }
